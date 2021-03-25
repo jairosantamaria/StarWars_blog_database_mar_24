@@ -10,19 +10,16 @@ Base = declarative_base()
 
 class Favorites(Base):
     __tablename__ = 'favorites'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
+    id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('user.id'))
     planet_id = Column(Integer, ForeignKey('planet.id'))
     people_id = Column(Integer, ForeignKey('people.id'))
-    favorites = relationship(Planets)
-    favorites = relationship(People)
-    favorites = relationship(User)
+    planets = relationship(Planets)
+    people = relationship(People)
+    user = relationship(User)
 
 class User(Base):
     __tablename__ = 'user'
-    # Here we define columns for the table address.
-    # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
     nickname = Column(String(250), nullable=False)
     mail = Column(String(250), nullable=False)
