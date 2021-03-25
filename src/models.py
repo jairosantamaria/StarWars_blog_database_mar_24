@@ -8,6 +8,13 @@ from eralchemy import render_er
 
 Base = declarative_base()
 
+class User(Base):
+    __tablename__ = 'user'
+    id = Column(Integer, primary_key=True)
+    nickname = Column(String(250), nullable=False)
+    mail = Column(String(250), nullable=False)
+    password = Column(String(250), nullable=False)
+
 class Favorites(Base):
     __tablename__ = 'favorites'
     id = Column(Integer, primary_key=True)
@@ -18,13 +25,6 @@ class Favorites(Base):
     people = relationship(People)
     user = relationship(User)
 
-class User(Base):
-    __tablename__ = 'user'
-    id = Column(Integer, primary_key=True)
-    nickname = Column(String(250), nullable=False)
-    mail = Column(String(250), nullable=False)
-    password = Column(String(250), nullable=False)
-  
 class People(Base):
     __tablename__ = 'people'
     id = Column(Integer, primary_key=True)
