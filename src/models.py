@@ -14,16 +14,7 @@ class User(Base):
     nickname = Column(String(250), nullable=False)
     mail = Column(String(250), nullable=False)
     password = Column(String(250), nullable=False)
-
-class Favorites(Base):
-    __tablename__ = 'favorites'
-    id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'))
-    planets_id = Column(Integer, ForeignKey('planets.id'))
-    people_id = Column(Integer, ForeignKey('people.id'))
-    planets = relationship(Planets)
-    people = relationship(People)
-    user = relationship(User)
+    mail = Column(String(250), nullable=False)
 
 class People(Base):
     __tablename__ = 'people'
@@ -69,6 +60,18 @@ class Starships(Base):
     MGLT = Column(Integer(250), nullable=False)
     starship_class = Column(String(250), nullable=False)
     pilots = Column(Integer(250), nullable=False)
+
+class Favorites(Base):
+    __tablename__ = 'favorites'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    people_id = Column(Integer, ForeignKey('people.id'))
+    planet_id = Column(Integer, ForeignKey('planets.id'))
+    starships_id = Column(Integer, ForeignKey('starships.id'))
+    user = relationship(User)
+    people = relationship(People)
+    planets = relationship(Planets)
+    starships = relationship(Starships)
 
 def to_dict(self):
         return {}
